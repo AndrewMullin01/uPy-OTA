@@ -19,8 +19,12 @@ updater = ota.OTA(
     branch="main",
     access_token  = "github_pat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 )
-  
-did_update = updater.update()
-if did_update:
+
+print("Checking for updates...")
+files_updated = updater.update()
+
+print(f"Done. {files_updated} files updated.")
+if files_updated > 0:
+  print("Resetting...")
   machine.reset()
     

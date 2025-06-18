@@ -33,7 +33,7 @@ Returns file as a string or None if it fails.
 
 ## method `update(self)`  
 Iterates through each file in the repo, checking if it's hash matched the local files hash. If the hashes mismatch then the Github file is downloaded and the local file overwritten.  
-Returns True if any files are overwritten, else False. The user should reset the board with `machine.reset()` accordingly.
+Returns the number of files updated. The user should reset the board with `machine.reset()` accordingly.
 
 
 

@@ -29,6 +29,7 @@ class OTA:
         return results
     
     def check_for_updates(self) -> list:
+        print("Checking for updates...")
         mismatches = []
         for f_name, file in self.list_files().items():
             try:
@@ -63,12 +64,14 @@ class OTA:
             time.delay_ms(2000*i)
         return None
 
-    def update(self) -> bool:
+    def update(self) -> int:
         to_update = self.check_for_updates()
         if to_update == []:
-            return False
+            print("Nothing to update.")
+            return 0
         
-        for file_name in self.check_for_updates():
+        i = 0
+        for file_name in to_update:
             print(f"Updating {file_name}...", end="")
             new_file = self.dl_file(file_name, retries=3)
 
@@ -78,5 +81,6 @@ class OTA:
             with open(file_name, "w") as f:
                 f.write(new_file)
             print(" Done.")
+            i += 1
         
-        return True
+        return i
